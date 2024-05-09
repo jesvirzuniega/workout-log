@@ -20,7 +20,7 @@ export default function SignUp() {
           <Button variant="ghost" className="w-fit text-md font-semibold">Login</Button>
         </Link>
       </div>
-      <div className="flex h-full justify-center items-center">
+      <div className="flex h-full justify-center items-center mt-[-40px]">
         <Card className="text-center max-w-md">
           <CardHeader>
             <CardTitle>Create an account</CardTitle>
