@@ -1,4 +1,5 @@
-import Image from "next/image"
+import AuthNavigation from "./components/auth-navigation";
+import AuthBackgroundImage from "./components/auth-background-image";
 
 export default function AuthLayout({
   children,
@@ -9,18 +10,13 @@ export default function AuthLayout({
     <div className="flex h-screen w-screen">
       <div className="w-1/2 bg-zinc-900 relative">
         <h1 className="absolute text-2xl font-semibold p-10 z-[2]">workout.log</h1>
-        <Image 
-          src="/images/jeff2.jpg"
-          objectFit="cover"
-          fill={true}
-          priority={true}
-          alt='background'
-          quality={100}
-          loading="eager"
-        />
+        <AuthBackgroundImage />
       </div>
       <div className="p-10 w-1/2">
-        {children}
+        <AuthNavigation />
+        <div className="flex h-full justify-center items-center mt-[-40px]">
+          {children}
+        </div>
       </div>
     </div>
   )

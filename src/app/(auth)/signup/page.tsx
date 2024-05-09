@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { EnvelopeOpenIcon } from "@radix-ui/react-icons"
 import { Button } from "@/components/ui/button"
 import {
@@ -15,32 +16,54 @@ import Link from "next/link"
 export default function SignUp() {
   return (
     <>
-      <div className="flex justify-end">
-        <Link href="/login">
-          <Button variant="ghost" className="w-fit text-md font-semibold">Login</Button>
-        </Link>
-      </div>
-      <div className="flex h-full justify-center items-center mt-[-40px]">
-        <Card className="text-center max-w-md">
-          <CardHeader>
-            <CardTitle>Create an account</CardTitle>
-            <CardDescription>Enter your email below to create your account</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="px-8">
-              <Input className="mb-3" type="email" placeholder="name@example.com" />
-              <Button className="text-sm w-full mb-3">Sign in with email</Button>
-              <Separator className="my-4 relative flex justify-center">
-                <div className="bg-zinc-950 px-6 text-muted-foreground bottom-[-12px] left-1/2 right-1/2 uppercase text-xs font-semibold my-[-6px]">Or continue with</div>
-              </Separator>
-              <Button className="text-sm mt-3 w-full mb-3"><EnvelopeOpenIcon className="mr-2" /> Gmail</Button>
+      <Card className="mx-auto max-w-sm">
+        <CardHeader>
+          <CardTitle className="text-xl">Sign Up</CardTitle>
+          <CardDescription>
+            Enter your information to create an account
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="first-name">First name</Label>
+                <Input id="first-name" placeholder="Max" required />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="last-name">Last name</Label>
+                <Input id="last-name" placeholder="Robinson" required />
+              </div>
             </div>
-          </CardContent>
-          <CardFooter>
-            <p className="text-sm text-muted-foreground">By clicking continue, you agree to our Terms of Service and Privacy Policy.</p>
-          </CardFooter>
-        </Card>
-      </div>
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                required
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" />
+            </div>
+            <Button type="submit" className="w-full">
+              Create an account
+            </Button>
+            <Button variant="outline" className="w-full">
+              <EnvelopeOpenIcon className="mr-2"/>
+              Sign up with Gmail
+            </Button>
+          </div>
+          <div className="mt-4 text-center text-sm">
+            Already have an account?{" "}
+            <Link href="/login" className="underline">
+              Sign in
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
     </>
   )
 }
