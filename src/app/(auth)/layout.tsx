@@ -15,7 +15,9 @@ export default function AuthLayout({
       <div className="p-10 w-1/2">
         <AuthNavigation />
         <div className="flex h-full justify-center items-center mt-[-40px]">
-          {children}
+          <div className="w-full max-w-[362px]">
+            {children}
+          </div>
         </div>
       </div>
     </div>

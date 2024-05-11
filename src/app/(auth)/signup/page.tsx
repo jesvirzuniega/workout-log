@@ -16,7 +16,7 @@ import Link from "next/link"
 export default function SignUp() {
   return (
     <>
-      <Card className="mx-auto max-w-sm">
+      <Card className="mx-auto w-full">
         <CardHeader>
           <CardTitle className="text-xl">Sign Up</CardTitle>
           <CardDescription>
