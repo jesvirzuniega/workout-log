@@ -15,18 +15,6 @@ import { loginFormSchema } from '@/validations/profile'
 import { z } from 'zod'
 
 export default function Login() {
-  const supabase = createClient()
-
-  async function authentication(values: z.infer<typeof loginFormSchema>) {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: values.email,
-      password: values.password,
-    })
-    console.log({ error })
-    revalidatePath('/', 'layout')
-    redirect('/')
-  }
-
   return (
     <Card className="mx-auto w-full">
       <CardHeader>
@@ -36,7 +24,7 @@ export default function Login() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ProfileForm authentication={authentication} />
+        <ProfileForm />
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
           <Link href="/signup" className="underline">

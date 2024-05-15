@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { loginFormSchema } from '@/validations/profile'
+import { login } from './actions'
 
-export default async function ProfileForm({ authentication }: { authentication: (values: z.infer<typeof loginFormSchema>) => Promise<void> }) {
+export default function ProfileForm() {
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -26,10 +27,12 @@ export default async function ProfileForm({ authentication }: { authentication: 
     },
   })
 
-  function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    authentication(values)
+  async function onSubmit(values: z.infer<typeof loginFormSchema>) {
+    const error = await login(values)
+    if (error.status === 400) {
+      form.setError('password', { message: 'Incorrect email or password'})
+      form.setFocus('password')
+    }
   }
 
   return (
