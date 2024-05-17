@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
-import { loginFormSchema } from '@/validations/profile'
+import { loginFormSchema, signUpFormSchema } from '@/validations/profile'
 import { z } from "zod"
 
 export async function login(data: z.infer<typeof loginFormSchema>) {
@@ -14,6 +14,7 @@ export async function login(data: z.infer<typeof loginFormSchema>) {
     password: data.password,
   })
   if (error) {
+    console.error(error)
     return {
       name: error.name,
       message: error.message,
@@ -25,20 +26,25 @@ export async function login(data: z.infer<typeof loginFormSchema>) {
   redirect('/')
 }
 
-export async function signup(formData: FormData) {
+export async function signUp(data: z.infer<typeof signUpFormSchema>) {
   const supabase = createClient()
-
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  }
-
-  const { error } = await supabase.auth.signUp(data)
-
+  const { error } = await supabase.auth.signUp({
+    email: data.email,
+    password: data.password,
+    options: {
+      data: {
+        first_name: data.firstName,
+        last_name: data.lastName,
+      },
+    },
+  })
   if (error) {
-    redirect('/error')
+    console.error(error)
+    return {
+      name: error.name,
+      message: error.message,
+      status: error.status
+    };
   }
 
   revalidatePath('/', 'layout')

@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1715008260618,
-      "tag": "0000_hesitant_mole_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1715009474070,
-      "tag": "0001_complex_scarecrow",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1715011451012,
-      "tag": "0002_calm_crystal",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1715520467111,
-      "tag": "0003_mighty_terror",
+      "when": 1715962307543,
+      "tag": "0000_complex_the_executioner",
       "breakpoints": true
     }
   ]

@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,9 +15,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { loginFormSchema } from '@/validations/profile'
-import { login } from './actions'
+import { login } from '../actions'
 
-export default function ProfileForm() {
+export default function LoginForm() {
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -29,7 +28,7 @@ export default function ProfileForm() {
 
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     const error = await login(values)
-    if (error.status === 400) {
+    if (error && error.status === 400) {
       form.setError('password', { message: 'Incorrect email or password'})
       form.setFocus('password')
     }
@@ -63,7 +62,7 @@ export default function ProfileForm() {
           render={({ field }) => (
             <FormItem className="grid gap-2">
               <div className="flex items-center">
-                <FormLabel htmlFor="email">Password</FormLabel>
+                <FormLabel htmlFor="password">Password</FormLabel>
                 <Link href="#" className="ml-auto inline-block text-sm underline">
                   Forgot your password?
                 </Link>
