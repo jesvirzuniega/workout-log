@@ -23,7 +23,7 @@ export async function login(data: z.infer<typeof loginFormSchema>) {
   }
 
   revalidatePath('/', 'layout')
-  redirect('/')
+  redirect('/planner')
 }
 
 export async function signUp(data: z.infer<typeof signUpFormSchema>) {
@@ -49,4 +49,11 @@ export async function signUp(data: z.infer<typeof signUpFormSchema>) {
 
   revalidatePath('/', 'layout')
   redirect('/')
+}
+
+export async function signOut() {
+  const supabase = createClient()
+  const { error } = await supabase.auth.signOut()
+  if (error) throw error
+  redirect('/login')
 }

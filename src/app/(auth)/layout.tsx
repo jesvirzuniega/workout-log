@@ -1,11 +1,17 @@
 import AuthNavigation from "./components/auth-navigation";
 import AuthBackgroundImage from "./components/auth-background-image";
+import { redirect } from 'next/navigation'
+import { createClient } from '@/utils/supabase/server'
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = createClient()
+  const { data, error } = await supabase.auth.getUser()
+  if (!error && data?.user) return redirect('/')
+
   return (
     <div className="flex h-screen w-screen">
       <div className="w-1/2 bg-zinc-900 relative">
