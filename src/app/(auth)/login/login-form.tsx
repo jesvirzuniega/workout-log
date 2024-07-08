@@ -2,6 +2,7 @@
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
+import { EnvelopeClosedIcon } from "@radix-ui/react-icons"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -15,7 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { loginFormSchema } from '@/validations/profile'
-import { login } from '../actions'
+import { login, signInWithGoogle } from '../actions'
 
 export default function LoginForm() {
 
@@ -82,8 +83,8 @@ export default function LoginForm() {
         <Button type="submit" className="w-full">
           Login
         </Button>
-        {/* TODO: Google SSO */}
-        <Button variant="outline" className="w-full">
+        <Button type="button" variant="outline" className="w-full" onClick={() => signInWithGoogle()}>
+          <EnvelopeClosedIcon className="mr-2"/>
           Login with Google
         </Button>
       </form>

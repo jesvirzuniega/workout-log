@@ -135,7 +135,7 @@ export default function SignUpForm() {
         </Button>
         <Button variant="outline" className="w-full">
           <EnvelopeOpenIcon className="mr-2"/>
-          Sign up with Gmail
+          Sign up with Google
         </Button>
       </form>
     </Form>

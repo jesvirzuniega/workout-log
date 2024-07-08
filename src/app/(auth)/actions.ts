@@ -57,3 +57,16 @@ export async function signOut() {
   if (error) throw error
   redirect('/login')
 }
+
+export async function signInWithGoogle() {
+  const supabase = createClient()
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      // TODO: find a way to dynamically get the origin
+      redirectTo: `http://localhost:5000/auth/callback`,
+    },
+  })
+  if (error) throw error
+  redirect(data.url)
+}
